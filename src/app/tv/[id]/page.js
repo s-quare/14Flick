@@ -1,6 +1,6 @@
 import { getTVDetails, getSearchInitialData } from "@/app/actions";
 import { notFound } from "next/navigation";
-import MovieHero from "@/components/movie/MovieHero"; // We can reuse the same Hero component
+import MovieHero from "@/components/movie/MovieHero"; 
 import SmartImage from "@/components/SmartImage";
 import MediaLink from "@/components/MediaLink";
 import WatchProviders from "@/components/movie/WatchProvider";
