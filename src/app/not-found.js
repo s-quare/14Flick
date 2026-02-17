@@ -1,4 +1,3 @@
-"use client";
 import GenreBento from "@/components/GenreBento";
 import SearchBar from "@/components/SearchBar";
 import { Monoton } from "next/font/google";

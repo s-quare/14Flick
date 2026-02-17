@@ -7,10 +7,20 @@ const Footer = () => {
       <hr className="mb-10 border-white/20" />
       <div className="max-w-7xl mx-auto grid grid-cols-1 xs:grid-cols-3 md:flex md:justify-between gap-x-4 gap-y-12">
         {/* Brand Section */}
-        <div className="text-center col-span-2 xs:col-span-3 md:max-w-xs">
-          <h1 className="text-yellow-400 font-black text-2xl mb-3 tracking-tighter">
-            14FLICK
-          </h1>
+        <div className="text-center col-span-2 xs:col-span-3 md:max-w-xs pb-5">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Image
+              src="/images/favicon.jpg"
+              alt="14Flick Logo"
+              width={32}
+              height={32}
+              className="object-contain h-8 aspect-square rounded-full border-white"
+            />
+            <h1 className="text-yellow-400 font-black text-2xl tracking-tighter">
+              14FLICK
+            </h1>
+          </div>
+
           <p className="font-medium leading-relaxed max-w-sm mx-auto">
             The ultimate comprehensive database for cinephiles. Discover your
             next favorite movie, series, or hidden gem today.

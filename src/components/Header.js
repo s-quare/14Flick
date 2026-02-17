@@ -31,13 +31,13 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-100 bg-black px-3 sm:px-8 lg:px-13 h-20 flex justify-between items-center gap-3">
-      <div className="flex items-center">
+      <div className="flex items-center gap-2">
         <Image
-          src="/images/favicon.png"
+          src="/images/favicon.jpg"
           alt="14Flick Logo"
           width={32}
           height={32}
-          className="drop-shadow-[0_0_15px_rgba(255,255,255,1)]"
+          className="h-6 object-contain w-6 rounded-full"
         />
         <h1 className="text-yellow-300 font-black font-mono text-sm xs:text-lg">
           14Flick
