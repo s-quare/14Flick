@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function SearchPage() {
   return (
-    <main className="min-h-screen bg-black pt-20">
+    <main className="min-h-screen bg-black pt-5">
       <div>
 
         <Suspense fallback={<div className="text-center py-20 text-white font-black uppercase tracking-widest animate-pulse">Searching Database...</div>}>
