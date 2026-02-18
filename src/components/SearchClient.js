@@ -79,9 +79,11 @@ const SearchClient = () => {
         <div className="w-[95%] py-5 max-w-100 mx-auto">
           <SearchBar preParam={query} />
         </div>
-        <h1 className="text-lg font-bold mb-8">
-          {query ? `Search results for: "${query}"` : "Discover More"}
-        </h1>
+        {query && (
+          <h1 className="text-lg font-bold mt-5 mb-8">
+            {`Search results for: "${query}"`}
+          </h1>
+        )}
 
         {/* my filter tab */}
         {query && (
@@ -154,7 +156,7 @@ const SearchClient = () => {
 
                       <span>
                         {item.media_type === "person"
-                          ? `Popular for ${item.known_for?.[0]?.title || item.known_for?.[0]?.name}`
+                          ? `Popular for ${item.known_for?.[0]?.title || item.known_for?.[0]?.name || '-'}`
                           : item.genre_ids
                               .slice(0, 2)
                               .map((id) => GenreMap[id])
@@ -177,7 +179,7 @@ const SearchClient = () => {
             </p>
           </div>
         ) : null}
-        <hr className="border-gray-600 border-2" />
+        {query && <hr className="border-gray-800 border" />}
       </section>
       {/* Recommendations */}
       <div className="space-y-12">

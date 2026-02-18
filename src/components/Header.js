@@ -78,7 +78,7 @@ const Header = () => {
       <div
         className={`grid max-w-200 ${isFocused ? "grid-cols-[0px_1fr]" : "grid-cols-[auto_auto]"} font-bold items-center text-gray-200 text-xs transition-all duration-400`}
       >
-        <div className="flex gap-1.5 sm:gap-2 overflow-hidden">
+        <div className="mr-2 flex gap-2 sm:gap-2 overflow-hidden">
           {[
             { name: "Home", href: "/" },
             { name: "Movies", href: "/movies" },
@@ -114,6 +114,7 @@ const Header = () => {
                 className="w-full font-light text-base bg-transparent text-white focus:outline-none"
                 value={searchWith}
                 onChange={(e) => setSearchWith(e.target.value)}
+                required
               />
             </form>
 
