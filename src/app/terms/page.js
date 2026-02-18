@@ -38,6 +38,7 @@ export default function TermsPage() {
             <a
               href="https://www.themoviedb.org"
               className="text-yellow-400 underline"
+              target="_blank"
             >
               The Movie Database (TMDB)
             </a>
