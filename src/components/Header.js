@@ -60,6 +60,7 @@ const Header = () => {
           alt="14Flick Logo"
           width={32}
           height={32}
+          unoptimized
           className="h-6 object-contain w-6 rounded-full"
         />
         <span className="text-yellow-300 font-black font-mono text-sm xs:text-lg">

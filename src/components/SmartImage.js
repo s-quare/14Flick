@@ -17,7 +17,7 @@ export default function SmartImage({
       return type === "profile"
         ? "/images/person-placeholder.jpeg"
         : "/images/placeholder.avif";
-    const size = type === "backdrop" ? "original" : "w500";
+    const size = type === "backdrop" ? "w1280" : "w500";
     return `https://image.tmdb.org/t/p/${size}${path}`;
   };
 
@@ -46,6 +46,7 @@ export default function SmartImage({
               : POSTER_SIZES
         }
         priority={priority}
+        unoptimized
         loading={type === "backdrop" ? "eager" : "lazy"}
         className={`object-cover transition-opacity duration-700 ${
           isLoading ? "opacity-0" : "opacity-100"

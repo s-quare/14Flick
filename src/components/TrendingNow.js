@@ -1,9 +1,26 @@
+"use client";
+
+import { useRef } from "react";
 import MediaLink from "./MediaLink";
 import SmartImage from "./SmartImage";
+import { useInView } from "react-intersection-observer";
 
 const TrendingNow = ({ movies }) => {
+  const scrollRef = useRef(null);
+
+  const { ref: lastCardRef, inView: isAtEnd } = useInView({
+    threshold: 0.1,
+    rootMargin: "0px -50px 0px 0px",
+  });
+
+  const scrollRight = () => {
+  if (scrollRef.current) {
+    scrollRef.current.scrollBy({ left: (window.innerWidth * 0.6), behavior: "smooth" });
+  }
+};
+
   return (
-    <section aria-labelledby="trending-title" className="py-8 px-5">
+    <section aria-labelledby="trending-title" className="py-8 pl-5 px-3">
       <h2 id="trending-title" className="text-lg font-bold font-mono">
         Trending Now
       </h2>
@@ -11,11 +28,12 @@ const TrendingNow = ({ movies }) => {
         Most streamed movies this week globally
       </p>
       <div
+        ref={scrollRef}
         role="list"
-        className="TrendingGrid grid grid-rows-2 relative grid-flow-col gap-x-6 gap-y-10 xs:gap-x-10 overflow-x-auto pb-4 px-3 no-scrollbar"
+        className="TrendingGrid grid grid-rows-2 relative grid-flow-col gap-x-6 gap-y-10 xs:gap-x-10 overflow-x-auto pb-4 pl-3 no-scrollbar"
       >
         {movies.map((movie) => (
-          <MediaLink key={movie.id} item={movie} className='w-full'>
+          <MediaLink key={movie.id} item={movie} className="w-full">
             <article
               role="listitem"
               className="cursor-pointer relative flex flex-col gap-2 w-35 md:w-45"
@@ -51,6 +69,16 @@ const TrendingNow = ({ movies }) => {
             </article>
           </MediaLink>
         ))}
+        <div ref={lastCardRef} className="opacity-0 w-1"></div>
+        <div
+          className={`row-span-2 h-fit sticky right-0 grid self-center place-items-center bg-linear-to-r from-transparent to-black transition-all duration-500 ease-in-out ${isAtEnd ? "opacity-0 -translate-x-10 pointer-events-none" : "opacity-100 translate-x-0"}`}
+        >
+          <button
+            onClick={scrollRight}
+            aria-label="Scroll right for more"
+            className="h-10 w-10 relative -top-1.5 rounded-full bi bi-chevron-right icon-stroke bg-white/10 hover:bg-white/20"
+          ></button>
+        </div>
       </div>
     </section>
   );

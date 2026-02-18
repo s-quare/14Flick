@@ -14,6 +14,7 @@ const Footer = () => {
               alt="14Flick Logo"
               width={32}
               height={32}
+              unoptimized
               className="object-contain h-8 aspect-square rounded-full border-white"
             />
             <h1 className="text-yellow-400 font-black text-2xl tracking-tighter">
@@ -119,6 +120,7 @@ const Footer = () => {
               src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
               alt="TMDB Logo"
               fill
+              unoptimized
               className="object-contain"
             />
           </div>
