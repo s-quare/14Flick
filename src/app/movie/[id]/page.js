@@ -27,7 +27,6 @@ export default async function MoviePage({ params }) {
   const { id } = await params;
   const movie = await getMovieDetails(id);
   const trendingTopRated = await getSearchInitialData();
-  console.log(movie);
 
   if (!movie) notFound();
 

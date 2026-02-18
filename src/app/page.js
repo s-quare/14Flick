@@ -1,3 +1,4 @@
+import FlickMindCTA from "@/components/FlickMindCTA";
 import GenreBento from "@/components/GenreBento";
 import Hero from "@/components/Hero";
 import JoinInner from "@/components/JoinInner";
@@ -9,7 +10,7 @@ const Home = async () => {
   const trending = await getTrendingAll();
   const heroMovie = trending[0];
   const restOfTrending = trending.slice(1);
-  //console.log(trending);
+
   const top20 = await getTopRatedMovies();
 
 
@@ -17,6 +18,7 @@ const Home = async () => {
     <div>
       <Hero movie={heroMovie} />
       <TrendingNow movies={restOfTrending} />
+      <FlickMindCTA />
       <GenreBento />
       <TopRated topMovies={top20} />
       <JoinInner />

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "FlickMind AI | Personalized Movie Scouting",
+  title: "FlickMind AI | Movie Recommendation AI",
   description: "Describe any mood or scenario and let 14Flick's AI find the perfect movie or TV show for you. Your personal AI cinema expert.",
   openGraph: {
     title: "FlickMind AI - 14Flick",
@@ -26,9 +26,6 @@ export const metadata = {
 export default function FlickMindLayout({ children }) {
   return (
     <>
-      {/* The layout serves the Metadata to the browser/bots 
-        while the children (your page.js) handles the AI logic.
-      */}
       {children}
     </>
   );

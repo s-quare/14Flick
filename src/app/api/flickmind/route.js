@@ -36,7 +36,7 @@ export async function POST(req) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "FlickMind is resting. Try again!" },
+      { error: "FlickMind AI failed to generate a response!" },
       { status: 500 },
     );
   }

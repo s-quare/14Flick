@@ -40,7 +40,6 @@ const SearchClient = () => {
       setResults(data);
       setLoading(false);
       setActiveFilter("all");
-      console.log(data);
     };
 
     triggerSearch();

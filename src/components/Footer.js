@@ -34,6 +34,7 @@ const Footer = () => {
             Catalog
           </p>
           {[
+            { name: "AI Recommendation", href: "/flickmind" },
             { name: "Movies Catalog", href: "/movies" },
             { name: "TV Series", href: "/series" },
             { name: "Discovery Hub", href: "/discover" },

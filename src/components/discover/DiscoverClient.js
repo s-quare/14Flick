@@ -225,7 +225,7 @@ export default function DiscoverClient({ initialResults }) {
                         <button
                           key={g.id}
                           onClick={() => setUrl({ genre: g.id })}
-                          className={`text-left p-3 rounded-xl text-[10px] font-bold uppercase transition-all ${activeGenre === g.id ? "bg-yellow-400 text-black" : "bg-neutral-900 text-white hover:bg-neutral-800"}`}
+                          className={`text-left p-3 rounded-xl text-[10px] font-bold transition-all ${activeGenre === g.id ? "bg-yellow-400 text-black" : "bg-neutral-900 text-white hover:bg-neutral-800"}`}
                         >
                           {g.name}
                         </button>
@@ -241,7 +241,7 @@ export default function DiscoverClient({ initialResults }) {
                         <button
                           key={r.id}
                           onClick={() => setUrl({ country: r.id })}
-                          className={`px-4 py-2 border rounded-lg text-[10px] font-bold uppercase ${activeCountry === r.id ? "bg-yellow-400 text-black border-yellow-400" : "bg-transparent border-white/10 hover:border-white/40"}`}
+                          className={`px-4 py-2 border rounded-lg text-[10px] font-bold ${activeCountry === r.id ? "bg-yellow-400 text-black border-yellow-400" : "bg-transparent border-white/10 hover:border-white/40"}`}
                         >
                           {r.name}
                         </button>
@@ -256,7 +256,7 @@ export default function DiscoverClient({ initialResults }) {
                       <button
                         key={e.id}
                         onClick={() => setUrl(e.params)}
-                        className={`w-full flex justify-between p-4 rounded-xl text-xs font-black uppercase transition-all ${activeGte === e.params.gte ? "bg-yellow-400 text-black" : "bg-neutral-900 hover:bg-neutral-800"}`}
+                        className={`w-full flex justify-between p-4 rounded-xl text-xs font-black transition-all ${activeGte === e.params.gte ? "bg-yellow-400 text-black" : "bg-neutral-900 hover:bg-neutral-800"}`}
                       >
                         <span>{e.name}</span>
                         <span>→</span>

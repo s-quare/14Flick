@@ -112,7 +112,7 @@ export default function WatchProviders({ data }) {
           href={providers.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-fit mx-auto block text-center text-[9px] font-bold text-yellow-400 uppercase tracking-widest transition-colors"
+          className="w-fit block text-[10px] font-bold text-yellow-400 uppercase tracking-widest transition-colors"
         >
           View on JustWatch →
         </a>

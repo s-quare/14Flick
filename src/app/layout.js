@@ -14,6 +14,9 @@ export const metadata = {
   },
   description:
     "The ultimate discovery hub for global cinema. Explore Hollywood, K-Drama, Nollywood, and more with trailers, cast info, and curated moods.",
+  verification: {
+    google: "nMmrkOluUwQP-WhVY2q5QMBydWY-HCz18DP6ECDerT4",
+  },
   keywords: [
     "14flick",
     "movie discovery",
