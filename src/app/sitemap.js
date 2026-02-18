@@ -1,7 +1,7 @@
 import { getDiscoverMedia } from "@/app/actions";
 
 export default async function sitemap() {
-  const baseUrl = "https://14flick.live";
+  const baseUrl = "https://www.14flick.live";
 
   // 1. Static Pages
   const staticPages = [

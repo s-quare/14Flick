@@ -7,7 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  metadataBase: new URL("https://14flick.live"),
+  metadataBase: new URL("https://www.14flick.live"),
   title: {
     default: "14flick | Discover Movies, Series & Collections",
     template: "%s | 14flick",
@@ -31,7 +31,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://14flick.live",
+    url: "https://www.14flick.live",
     siteName: "14flick",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },

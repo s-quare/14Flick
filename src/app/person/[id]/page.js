@@ -39,7 +39,7 @@ export default async function PersonPage({ params }) {
     jobTitle: person.known_for_department,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://14flick.live/person/${person.id}`,
+      "@id": `https://www.14flick.live/person/${person.id}`,
     },
   };
 

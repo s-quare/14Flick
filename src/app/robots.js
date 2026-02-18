@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://14flick.live/sitemap.xml',
+    sitemap: 'https://www.14flick.live/sitemap.xml',
   }
 }

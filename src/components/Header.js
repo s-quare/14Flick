@@ -26,7 +26,14 @@ const Header = () => {
       search(searchWith);
       return;
     }
-    setIsFocused(false);
+    setTimeout(() => {
+      setIsFocused(false);
+    }, 200);
+  };
+
+  const bySubmit = (e) => {
+    e.preventDefault();
+    search(searchWith);
   };
 
   return (
@@ -73,15 +80,18 @@ const Header = () => {
           <div
             className={`max-w-45 xs:max-w-65 border-white/50 py-1 grid ${isFocused ? "grid-cols-[1fr_auto] border-2 px-2.5" : "grid-cols-[0px_auto]"} gap-2 items-center rounded-full overflow-hidden md:hidden transition-all duration-400`}
           >
-            <input
-              ref={inputRef}
-              onFocus={() => setIsFocused(true)}
-              onBlur={handleBlur}
-              type="text"
-              className="w-full font-light text-base"
-              value={searchWith}
-              onChange={(e) => setSearchWith(e.target.value)}
-            />
+            <form onSubmit={bySubmit}>
+              <input
+                ref={inputRef}
+                onFocus={() => setIsFocused(true)}
+                onBlur={handleBlur}
+                type="text"
+                className="w-full font-light text-base"
+                value={searchWith}
+                onChange={(e) => setSearchWith(e.target.value)}
+              />
+            </form>
+
             <button
               ref={searchButtonRef}
               onClick={focusInput}
