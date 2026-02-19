@@ -9,6 +9,7 @@ import SearchBar from "@/components/SearchBar";
 import SmartImage from "@/components/SmartImage";
 import GenreMap from "@/lib/GenreMap";
 import MediaLink from "@/components/MediaLink";
+import { getCachedData, setCachedData } from "@/lib/cache";
 
 const SearchClient = () => {
   const searchParams = useSearchParams();
@@ -29,15 +30,23 @@ const SearchClient = () => {
 
   // 2. Fetch results when query changes
   useEffect(() => {
-    if (!query || query.trim() === "") {
-      //setResults([]);
-      return;
-    }
+    if (!query || query.trim() === "") return;
 
     const triggerSearch = async () => {
+      // Check Cache First
+      const cacheKey = `search-${query.trim().toLowerCase()}`;
+      const cached = getCachedData(cacheKey);
+
+      if (cached) {
+        setResults(cached);
+        setActiveFilter("all");
+        return;
+      }
+
       setLoading(true);
       const data = await performSearch(query);
       setResults(data);
+      setCachedData(cacheKey, data); // Store for later
       setLoading(false);
       setActiveFilter("all");
     };
@@ -155,7 +164,7 @@ const SearchClient = () => {
 
                       <span>
                         {item.media_type === "person"
-                          ? `Popular for ${item.known_for?.[0]?.title || item.known_for?.[0]?.name || '-'}`
+                          ? `Popular for ${item.known_for?.[0]?.title || item.known_for?.[0]?.name || "-"}`
                           : item.genre_ids
                               .slice(0, 2)
                               .map((id) => GenreMap[id])

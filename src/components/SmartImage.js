@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
 
 export default function SmartImage({
@@ -18,43 +17,39 @@ export default function SmartImage({
         ? "/images/person-placeholder.jpeg"
         : "/images/placeholder.avif";
 
-    // REDUCED SIZES: w780 for backdrops, w342 for posters.
-    // This saves massive bandwidth while staying sharp.
+    // Optimized TMDB sizes: sharp but lightweight
     const size =
       type === "backdrop" ? "w780" : type === "profile" ? "h632" : "w342";
     return `https://image.tmdb.org/t/p/${size}${path}`;
   };
 
-  const POSTER_SIZES =
-    "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
-  const BANNER_SIZES = "100vw";
-  const PROFILE_SIZES = "(max-width: 640px) 50vw, 20vw";
-
   return (
     <div className="relative h-full w-full overflow-hidden bg-neutral-900">
+      {/* Loading Shimmer - Stays exactly as it was */}
       {isLoading && (
         <div className="absolute inset-0 z-10 animate-pulse bg-neutral-800" />
       )}
 
-      <Image
+      <img
         src={selfImage || getImageUrl(path, type)}
         alt={alt || (type === "profile" ? "Actor profile" : "Media image")}
-        fill
-        sizes={
-          type === "backdrop"
-            ? BANNER_SIZES
-            : type === "profile"
-              ? PROFILE_SIZES
-              : POSTER_SIZES
-        }
-        priority={priority}
-        unoptimized // Continues to save on Vercel transformation costs
-        loading={priority ? "eager" : "lazy"} // Only eager if priority is passed
-        className={`object-cover transition-opacity duration-700 ${
+        // Replacement for 'fill' and 'object-cover'
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+        }}
+        // Native lazy loading for performance
+        loading={priority ? "eager" : "lazy"}
+        // Triggers your existing loading state
+        onLoad={() => setLoading(false)}
+        className={`transition-opacity duration-700 ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
-        onLoad={() => setLoading(false)}
       />
+
+      {/* Your original overlay */}
       <div className={`absolute inset-0 z-20 ${overlay}`} />
     </div>
   );

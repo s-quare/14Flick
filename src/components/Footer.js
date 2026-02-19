@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -9,13 +8,12 @@ const Footer = () => {
         {/* Brand Section */}
         <div className="text-center xs:col-span-3 md:max-w-xs pb-5">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <Image
+            <img
               src="/images/favicon.jpg"
               alt="14Flick Logo"
               width={32}
               height={32}
-              unoptimized
-              className="object-contain h-8 aspect-square rounded-full border-white"
+              className="object-contain h-8 w-8 rounded-full border-white"
             />
             <h1 className="text-yellow-400 font-black text-2xl tracking-tighter">
               14FLICK
@@ -117,12 +115,14 @@ const Footer = () => {
       <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6">
         <div className="flex flex-col items-center gap-3">
           <div className="relative h-5 w-5 opacity-40 grayscale hover:opacity-100 transition-opacity">
-            <Image
+            <img
               src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
               alt="TMDB Logo"
-              fill
-              unoptimized
-              className="object-contain"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+              }}
             />
           </div>
           <p className="text-[9px] text-center text-white/30 max-w-md uppercase tracking-widest leading-relaxed">

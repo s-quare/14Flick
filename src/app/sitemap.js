@@ -1,42 +1,45 @@
-import { getDiscoverMedia } from "@/app/actions";
-
 export default async function sitemap() {
   const baseUrl = "https://www.14flick.live";
 
-  // 1. Static Pages
-  const staticPages = ["", "/flickmind", "/movies", "/series", "/discover"].map(
-    (route) => ({
-      url: `${baseUrl}${route}`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly", // Changed from weekly/daily to stop bot hammering
-      priority: route === "" ? 1.0 : 0.7,
-    }),
-  );
+  // Static pages - these should always be crawlable
+  const staticPages = [
+    { route: "", priority: 1.0, changeFrequency: "weekly" },
+    { route: "/flickmind", priority: 0.8, changeFrequency: "monthly" },
+    { route: "/movies", priority: 0.9, changeFrequency: "daily" },
+    { route: "/series", priority: 0.9, changeFrequency: "daily" },
+    { route: "/discover", priority: 0.8, changeFrequency: "weekly" },
+  ].map((item) => ({
+    url: `${baseUrl}${item.route}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: item.changeFrequency,
+    priority: item.priority,
+  }));
 
-  // 2. Dynamic Pages (Limited to prevent bot-overload)
-  let dynamicEntries = [];
-  try {
-    // We only fetch the first page (top 20) to keep the sitemap small
-    const movies = await getDiscoverMedia("movie");
-    const movieEntries = movies.results.slice(0, 20).map((m) => ({
-      url: `${baseUrl}/movie/${m.id}`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    }));
+  // Hardcoded popular movies - no API calls, zero cost
+  const popularMovieIds = [
+    550, 278, 238, 240, 155, 680, 496243, 338953, 11, 12,
+    13, 14, 15, 16, 17, 18, 19, 20, 27205, 328,
+  ];
 
-    const series = await getDiscoverMedia("tv");
-    const seriesEntries = series.results.slice(0, 20).map((s) => ({
-      url: `${baseUrl}/series/${s.id}`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    }));
+  const moviePages = popularMovieIds.map((id) => ({
+    url: `${baseUrl}/movie/${id}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
 
-    dynamicEntries = [...movieEntries, ...seriesEntries];
-  } catch (error) {
-    console.error("Sitemap dynamic fetch failed", error);
-  }
+  // Hardcoded popular TV series
+  const popularSeriesIds = [
+    1399, 1396, 1402, 1403, 1404, 1405, 1416, 1418, 1439, 1440,
+    1457, 1668, 2993, 33647, 46952,
+  ];
 
-  return [...staticPages, ...dynamicEntries];
+  const seriesPages = popularSeriesIds.map((id) => ({
+    url: `${baseUrl}/series/${id}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...moviePages, ...seriesPages];
 }

@@ -7,6 +7,7 @@ import { QUICK_MODES, MODAL_OPTIONS } from "@/lib/discover-data";
 import { showToast } from "@/lib/toast";
 import MediaLink from "@/components/MediaLink";
 import SmartImage from "@/components/SmartImage";
+import { getCachedData, setCachedData } from "@/lib/cache";
 
 export default function DiscoverClient({ initialResults }) {
   const router = useRouter();
@@ -48,6 +49,17 @@ export default function DiscoverClient({ initialResults }) {
   // 4. Sync Fetching with URL changes
   useEffect(() => {
     const fetchNewSelection = async () => {
+      // Generate a unique key based on all active filters
+      const cacheKey = `discover-${searchParams.toString() || "default"}`;
+      const cached = getCachedData(cacheKey);
+
+      if (cached) {
+        setResults(cached);
+        setPage(1);
+        setHasMore(true);
+        return;
+      }
+
       setLoading(true);
       setPage(1);
       setHasMore(true);
@@ -60,7 +72,9 @@ export default function DiscoverClient({ initialResults }) {
           page: 1,
         };
         const data = await getDiscoverMedia("movie", filters);
-        setResults(data.results || []);
+        const results = data.results || [];
+        setResults(results);
+        setCachedData(cacheKey, results); // Cache the results
       } catch (err) {
         showToast("Error fetching results.");
       } finally {

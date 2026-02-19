@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import { useSearch } from "@/lib/handleFrontSearch";
-import Image from "next/image";
 
 const Header = () => {
   const pathname = usePathname();
@@ -55,13 +54,13 @@ const Header = () => {
     <nav className="sticky top-0 z-100 bg-black px-3 sm:px-8 lg:px-13 h-20 flex justify-between items-center gap-3">
       {/* Brand - Logo & Name */}
       <Link href="/" className="flex items-center gap-2 outline-none">
-        <Image
+        <img
           src="/images/favicon.jpg"
           alt="14Flick Logo"
           width={32}
           height={32}
-          unoptimized
-          className="h-6 object-contain w-6 rounded-full"
+          className="h-6 w-6 object-contain rounded-full"
+          loading="eager"
         />
         <span className="text-yellow-300 font-black font-mono text-sm xs:text-lg">
           14Flick
