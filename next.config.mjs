@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
+  compress: true, // Saves bandwidth by zipping responses
   images: {
+    minimumCacheTTL: 31536000, // Cache optimized images for 1 year
     remotePatterns: [
       {
         protocol: "https",
