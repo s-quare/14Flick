@@ -23,7 +23,7 @@ export default function CookiePage() {
         </section>
 
         <footer className="pt-10 border-t border-white/10">
-          <Link href="/" className="text-yellow-400 font-black uppercase text-xs tracking-widest">← Back to Discovery</Link>
+          <Link href="/" className="text-yellow-400 font-light uppercase text-xs tracking-widest">← Back to Home</Link>
         </footer>
       </div>
     </main>

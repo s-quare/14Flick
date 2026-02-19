@@ -83,7 +83,10 @@ export default function FlickMindPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: input,
-          suggestion: data.title || data.name,
+          suggestion: data.title || data.name || "No name found",
+          type: media_type,
+          year: data?.release_date || data?.first_air_date || 'Date not found',
+          aiReason: data.aiReason
         }),
       }).catch(() => null);
     } catch (err) {
@@ -103,9 +106,9 @@ export default function FlickMindPage() {
         >
           <div className="mb-4 flex w-fit mx-auto gap-2 items-center">
             <div className="bg-yellow-300/50 p-0.5 rounded-full  animate-[ping_3000ms_cubic-bezier(0.4,0,0.6,1)_infinite]">
-                <div className="w-1.5 h-1.5 rounded-full bg-yellow-300 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-yellow-300 animate-pulse"></div>
             </div>
-            
+
             <h1 className="text-lg md:text-2xl font-black font-serif text-yellow-300 uppercase tracking-wider italic">
               FlickMind
             </h1>

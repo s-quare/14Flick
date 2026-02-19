@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Fragment, useMemo } from "react";
+import { useState, useEffect, Fragment, useMemo, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Dialog, Transition } from "@headlessui/react";
 import { getDiscoverMedia } from "@/app/actions";
@@ -11,6 +11,7 @@ import SmartImage from "@/components/SmartImage";
 export default function DiscoverClient({ initialResults }) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const isInitialMount = useRef(true);
 
   // 1. State Management
   const [results, setResults] = useState(initialResults || []);
@@ -60,21 +61,28 @@ export default function DiscoverClient({ initialResults }) {
         };
         const data = await getDiscoverMedia("movie", filters);
         setResults(data.results || []);
-        if (data.results?.length === 0)
-          showToast("No results found for this selection.");
       } catch (err) {
-        showToast("Error fetching results. Please try again.");
+        showToast("Error fetching results.");
       } finally {
         setLoading(false);
       }
     };
 
-    // Only fetch if there are actually params (otherwise keep initial server results)
-    if (searchParams.toString()) {
-      fetchNewSelection();
-    } else {
-      setResults(initialResults);
+    // 1. If it's the very first time the page loads, we don't fetch.
+    // The server already gave us initialResults in the props.
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
     }
+
+    // 2. If the user clears filters (goes back to /discover), reset to initial server data
+    if (!searchParams.toString()) {
+      setResults(initialResults);
+      return;
+    }
+
+    // 3. Otherwise, the user actually clicked a filter, so fetch new data
+    fetchNewSelection();
   }, [searchParams, initialResults]);
 
   // 5. Load More Logic
@@ -150,7 +158,8 @@ export default function DiscoverClient({ initialResults }) {
       {/* SHOWING RESULTS FOR LABEL */}
       <div className="border-l-4 border-yellow-400 pl-4">
         <h2 className="text-lg md:text-4xl font-black uppercase flex gap-2">
-          <span>Showing:</span> <span className="text-yellow-400">{activeLabel}</span>
+          <span>Showing:</span>{" "}
+          <span className="text-yellow-400">{activeLabel}</span>
         </h2>
       </div>
 

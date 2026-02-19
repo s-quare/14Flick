@@ -8,7 +8,9 @@ const JoinInner = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    showToast("Awaiting subscribe function:", email);
+    setTimeout(() => {
+      showToast("Awaiting subscribe function:", email);
+    }, 1000);
   };
 
   return (
