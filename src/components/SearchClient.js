@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { performSearch, getSearchInitialData } from "@/app/actions";
+import { performSearch } from "@/app/actions";
 import TrendingNow from "@/components/TrendingNow";
 import TopRated from "@/components/TopRated";
 import LoadingShimmer from "@/components/search/LoadingShimmer";
@@ -16,17 +16,10 @@ const SearchClient = () => {
   const query = searchParams.get("q");
 
   const [results, setResults] = useState([]);
-  const [initialData, setInitialData] = useState({
-    trending: [],
-    topRated: [],
-  });
   const [loading, setLoading] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // get trending and top rated
-  useEffect(() => {
-    getSearchInitialData().then(setInitialData);
-  }, []);
+ 
 
   // 2. Fetch results when query changes
   useEffect(() => {
@@ -191,11 +184,8 @@ const SearchClient = () => {
       </section>
       {/* Recommendations */}
       <div className="space-y-12">
-        <TrendingNow
-          movies={initialData.trending}
-          title="People are watching"
-        />
-        <TopRated topMovies={initialData.topRated} title="All time classics" />
+        <TrendingNow />
+        <TopRated />
       </div>
     </main>
   );

@@ -1,8 +1,14 @@
+'use client'
 import GenreMap from "@/lib/GenreMap.js";
 import SmartImage from "./SmartImage";
 import MediaLink from "./MediaLink";
+import { useDataStore } from "@/store/useDataStore";
 
-const Hero = ({ movie }) => {
+const Hero = () => {
+  const movies = useDataStore((state) => state.trending);
+  const movie = movies[0];
+
+  if(!movie) return;
   return (
     <section aria-labelledby="featured-movie" className="relative">
       <article className="relative">

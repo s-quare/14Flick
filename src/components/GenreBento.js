@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { genresSelect } from "@/lib/GenreMap";
-import SmartImage from "./SmartImage";
 
 const GenreBento = () => {
   return (
@@ -25,8 +24,8 @@ const GenreBento = () => {
               role="listitem"
               className={`relative rounded-lg overflow-hidden cursor-pointer border border-neutral-800 h-35 xs:h-48 sm:h-70`}
             >
-              <SmartImage
-                selfImage={`/images/covers/${genre.path}.avif`}
+              <img
+                src={`/images/covers/${genre.path}.avif`}
                 type="poster"
                 overlay="bg-black/30"
                 alt={genre.name}

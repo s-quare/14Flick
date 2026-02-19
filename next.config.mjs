@@ -1,20 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
-  compress: true, // Saves bandwidth by zipping responses
+  compress: true, 
   images: {
-    minimumCacheTTL: 31536000, // Cache optimized images for 1 year
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "image.tmdb.org",
-        pathname: "/t/p/**",
-      },
-      {
-        protocol: "https",
-        hostname: "www.themoviedb.org",
-      },
-    ],
+    // This disables the Vercel Image Optimization API entirely for your app.
+    // It forces Next.js to serve images as-is, saving you from transformation costs.
+    unoptimized: true,
   },
 };
 

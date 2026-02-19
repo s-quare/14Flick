@@ -4,8 +4,10 @@ import { useRef } from "react";
 import MediaLink from "./MediaLink";
 import SmartImage from "./SmartImage";
 import { useInView } from "react-intersection-observer";
+import { useDataStore } from "@/store/useDataStore";
 
-const TrendingNow = ({ movies }) => {
+const TrendingNow = () => {
+  const movies = useDataStore((state) => state.trending);
   const scrollRef = useRef(null);
 
   const { ref: lastCardRef, inView: isAtEnd } = useInView({
@@ -18,6 +20,8 @@ const TrendingNow = ({ movies }) => {
     scrollRef.current.scrollBy({ left: (window.innerWidth * 0.6), behavior: "smooth" });
   }
 };
+
+if(!movies || movies.length === 0) return;
 
   return (
     <section aria-labelledby="trending-title" className="py-8 pl-5 px-3">

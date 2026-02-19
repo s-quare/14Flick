@@ -1,4 +1,4 @@
-import { getTVDetails, getSearchInitialData } from "@/app/actions";
+import { getTVDetails } from "@/app/actions";
 import { notFound } from "next/navigation";
 import MovieHero from "@/components/movie/MovieHero"; 
 import SmartImage from "@/components/SmartImage";
@@ -23,7 +23,6 @@ export async function generateMetadata({ params }) {
 export default async function TVShowPage({ params }) {
   const { id } = await params;
   const series = await getTVDetails(id);
-  const trendingData = await getSearchInitialData();
 
   if (!series) notFound();
 
@@ -182,7 +181,7 @@ export default async function TVShowPage({ params }) {
             </div>
           </div>
         ) : (
-          <TrendingNow movies={trendingData.trending} />
+          <TrendingNow />
         )}
       </section>
     </main>

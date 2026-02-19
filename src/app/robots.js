@@ -1,44 +1,22 @@
 export default function robots() {
   return {
     rules: [
-      // Block aggressive AI scrapers completely
-      {
-        userAgent: [
-          "GPTBot",
-          "ClaudeBot",
-          "CCBot",
-          "ImagesiftBot",
-          "Omgilibot",
-        ],
-        disallow: "/",
-      },
-      // Block other known aggressive bots
-      {
-        userAgent: ["AdsBot-Google", "Amazonbot", "Yandex", "Baidu", "MJ12bot"],
-        disallow: "/",
-      },
-      // Rules for all other crawlers (including Googlebot, Bingbot)
       {
         userAgent: "*",
-        allow: [
-          "/", // Homepage
-          "/movie/", // Movie detail pages
-          "/series/", // Series detail pages
-          "/person/", // Actor/person pages
-          "/flickmind", // AI recommendation page
-          "/movies", // Movies listing
-          "/series", // Series listing
-        ],
         disallow: [
-          "/api/", // API routes - never crawl
-          "/search", // Search results - expensive API calls
-          "/discover", // Filter/discover - expensive API calls
-          "/admin/", // Admin routes
-          "/private/", // Private routes
-          "/_next/", // Next.js internals
-          "/auth/", // Auth routes if you have them
+          "/movie/", // Blocks crawling of individual movie pages
+          "/series/", // Blocks crawling of individual series pages
+          "/person/", // Blocks crawling of actor pages
+          "/api/",
+          "/search",
+          "/discover",
         ],
-        crawlDelay: "2", // 2 second delay between requests
+        crawlDelay: 10, // Forces bots to wait 10 seconds between clicks
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/", // Allows Google to see your landing pages only
+        disallow: ["/api/", "/search"],
       },
     ],
     sitemap: "https://www.14flick.live/sitemap.xml",

@@ -1,5 +1,4 @@
 import { getMovieDetails } from "@/app/actions";
-import { getSearchInitialData } from "@/app/actions";
 import { notFound } from "next/navigation";
 import MovieHero from "@/components/movie/MovieHero";
 import SmartImage from "@/components/SmartImage";
@@ -26,7 +25,6 @@ export async function generateMetadata({ params }) {
 export default async function MoviePage({ params }) {
   const { id } = await params;
   const movie = await getMovieDetails(id);
-  const trendingTopRated = await getSearchInitialData();
 
   if (!movie) notFound();
 
@@ -236,7 +234,7 @@ export default async function MoviePage({ params }) {
               </div>
             </div>
           ) : (
-            <TrendingNow movies={trendingTopRated.trending} />
+            <TrendingNow />
           )}
         </section>
       </main>
